@@ -18,6 +18,24 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
+      - name: Create coverity.yaml
+        shell: bash
+        run: |
+          cat > coverity.yaml << 'EOF'
+          capture:
+            files:
+              exclude-regex: '((\.venv|__pycache__|\.git)/.*)'
+          analyze:
+            cov-analyze-args:
+              - '--webapp-security'
+              - '--security'
+              - '--enable'
+              - 'HARDCODED_CREDENTIALS'
+              - '--enable'
+              - 'SQLI'
+              - '--enable'
+              - 'OS_CMD_INJECTION'
+          EOF
       - name: Checkout
         uses: actions/checkout@v4
 
