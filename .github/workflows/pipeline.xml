@@ -95,3 +95,4 @@ jobs:
           name: scan-results-${{ github.event.inputs.target || 'cop' }}
           path: .synopsys/polaris/data/coverity/**/idir/output/summary.txt
           if-no-files-found: ignore
+ 
