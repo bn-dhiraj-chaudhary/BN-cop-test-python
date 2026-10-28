@@ -50,7 +50,10 @@ jobs:
       # Polaris/Coverity CLI reads a fixed config filename (.polaris.yml).
       # This repo keeps the config as COP.yml so it's easy to spot in this test harness;
       # copy it into place before invoking the CLI.
-      
+
+      - name: Stage COP.yml as .polaris.yml
+        run: cp COP.yml .polaris.yml
+        
       - name: Polaris Black Duck Security Scan
         uses: blackduck-inc/black-duck-security-scan@v2
         with:
