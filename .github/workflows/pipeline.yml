@@ -23,12 +23,14 @@ jobs:
         run: |
           CAPTURE_KEY="capture"
           ANALYZE_KEY="analyze"
+          EXCLUDE_KEY="exclude-regex"
+          COV_ANALYZE_ARGS_KEY="cov-analyze-args"
           cat > coverity.yaml << EOF
           ${CAPTURE_KEY}:
             files:
-              exclude-regex: '((\.venv|__pycache__|\.git)/.*)'
+              ${EXCLUDE_KEY}: '((\.venv|__pycache__|\.git)/.*)'
           ${ANALYZE_KEY}:
-            cov-analyze-args:
+            ${COV_ANALYZE_ARGS_KEY}:
               - '--webapp-security'
               - '--security'
               - '--enable'
