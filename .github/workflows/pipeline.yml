@@ -21,11 +21,13 @@ jobs:
       - name: Create coverity.yaml
         shell: bash
         run: |
-          cat > coverity.yaml << 'EOF'
-          capture:
+          CAPTURE_KEY="capture"
+          ANALYZE_KEY="analyze"
+          cat > coverity.yaml << EOF
+          ${CAPTURE_KEY}:
             files:
               exclude-regex: '((\.venv|__pycache__|\.git)/.*)'
-          analyze:
+          ${ANALYZE_KEY}:
             cov-analyze-args:
               - '--webapp-security'
               - '--security'
